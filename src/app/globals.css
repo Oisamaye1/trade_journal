@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/*
+ * Theme: tokens are CSS variables; Tailwind utilities map to them via @theme inline.
+ * `data-theme` on <html> is set before paint by the inline script in the root layout
+ * (cookie "theme" = light | dark | system). Without JS, the media query below still applies.
+ * P&L colours must always be paired with a sign or label — never colour alone.
+ */
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --background: #f6f7f9;
+  --surface: #ffffff;
+  --surface-muted: #eef1f5;
+  --foreground: #0f1729;
+  --muted-foreground: #556070;
+  --border: #dde2e9;
+  --input: #c9d0da;
+  --primary: #1f4fd1;
+  --primary-hover: #1a43b3;
+  --primary-foreground: #ffffff;
+  --secondary: #e8ecf2;
+  --secondary-hover: #dce2ea;
+  --secondary-foreground: #0f1729;
+  --ring: #2b62f0;
+  --profit: #047857;
+  --profit-soft: #e3f5ee;
+  --loss: #b42318;
+  --loss-soft: #fdecea;
+  --warning: #a15c07;
+  --warning-soft: #fdf3e1;
+  --info-soft: #e8efff;
+  --overlay: rgb(15 23 41 / 0.45);
+  --shadow: 0 1px 2px rgb(15 23 41 / 0.06), 0 1px 3px rgb(15 23 41 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --background: #0a0e16;
+    --surface: #111724;
+    --surface-muted: #182031;
+    --foreground: #e7eaf0;
+    --muted-foreground: #9aa5b8;
+    --border: #253045;
+    --input: #344158;
+    --primary: #7aa2ff;
+    --primary-hover: #94b4ff;
+    --primary-foreground: #0a0e16;
+    --secondary: #1d2638;
+    --secondary-hover: #26314a;
+    --secondary-foreground: #e7eaf0;
+    --ring: #7aa2ff;
+    --profit: #3fd29a;
+    --profit-soft: #0f2a22;
+    --loss: #ff7b72;
+    --loss-soft: #33171a;
+    --warning: #f5b94a;
+    --warning-soft: #2e2412;
+    --info-soft: #172343;
+    --overlay: rgb(0 0 0 / 0.6);
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0a0e16;
+  --surface: #111724;
+  --surface-muted: #182031;
+  --foreground: #e7eaf0;
+  --muted-foreground: #9aa5b8;
+  --border: #253045;
+  --input: #344158;
+  --primary: #7aa2ff;
+  --primary-hover: #94b4ff;
+  --primary-foreground: #0a0e16;
+  --secondary: #1d2638;
+  --secondary-hover: #26314a;
+  --secondary-foreground: #e7eaf0;
+  --ring: #7aa2ff;
+  --profit: #3fd29a;
+  --profit-soft: #0f2a22;
+  --loss: #ff7b72;
+  --loss-soft: #33171a;
+  --warning: #f5b94a;
+  --warning-soft: #2e2412;
+  --info-soft: #172343;
+  --overlay: rgb(0 0 0 / 0.6);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-ring: var(--ring);
+  --color-profit: var(--profit);
+  --color-profit-soft: var(--profit-soft);
+  --color-loss: var(--loss);
+  --color-loss-soft: var(--loss-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-info-soft: var(--info-soft);
+  --color-overlay: var(--overlay);
+  --shadow-card: var(--shadow);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
